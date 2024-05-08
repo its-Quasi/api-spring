@@ -5,6 +5,7 @@ import com.apiJobs.jobApp.job.JobService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,5 +31,29 @@ public class JobServiceNonDB implements JobService {
       if(Objects.equals(job.getId(), id)) return job;
     }
     return null;
+  }
+
+  @Override
+  public Job deleteById(Long id) {
+    for(Job job : jobs) {
+      if(Objects.equals(job.getId(), id)) {
+        jobs.remove(job);
+        return job;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public Boolean updateJobById(Long id, Job updatedJob) {
+    for (int i = 0; i < jobs.size(); i++) {
+      Job job = jobs.get(i);
+      if (Objects.equals(job.getId(), id)) {
+        updatedJob.setId(id);
+        jobs.set(i, updatedJob);
+        return true;
+      }
+    }
+    return false;
   }
 }
