@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface JobService {
   List<Job> findAll();
-  String createJob(Job job);
+  void createJob(Job job);
+  Job getJobByid(Long id);
 }

@@ -1,12 +1,10 @@
 package com.apiJobs.jobApp.job;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Objects;
 
-@Getter @Setter
+@Data
 public class Job {
   public Long id;
   public String title;

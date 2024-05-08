@@ -1,13 +1,15 @@
 package com.apiJobs.jobApp.job;
 
-import com.apiJobs.jobApp.job.impl.JobServiceNonDB;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/jobs")
+@RequestMapping("jobs")
 public class JobController {
 
   private final JobService jobService;
@@ -17,12 +19,22 @@ public class JobController {
   }
 
   @GetMapping()
-  public List<Job> findAll(){
-    return jobService.findAll();
+  public ResponseEntity<List<Job>> findAll(){
+    return ResponseEntity.ok(this.jobService.findAll());
   }
 
   @PostMapping()
-  public String createJob(@RequestBody Job job) {
-    return this.jobService.createJob(job);
+  public ResponseEntity<String> createJob(@RequestBody Job job) {
+    this.jobService.createJob(job);
+    return new ResponseEntity<>("Job created successfully", HttpStatus.CREATED);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Job> getJobById(@PathVariable Long id) {
+    Job job = this.jobService.getJobByid(id);
+    if(job != null) {
+      return new ResponseEntity<Job>(job, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 }
