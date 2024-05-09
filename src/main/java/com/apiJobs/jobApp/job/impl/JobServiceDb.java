@@ -1,35 +1,55 @@
 package com.apiJobs.jobApp.job.impl;
 
 import com.apiJobs.jobApp.job.Job;
+import com.apiJobs.jobApp.job.JobRepository;
 import com.apiJobs.jobApp.job.JobService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobServiceDb implements JobService {
+
+  @Autowired
+  private JobRepository jobRepository;
+
   @Override
   public List<Job> findAll() {
-    return List.of();
+    return jobRepository.findAll();
   }
 
   @Override
   public void createJob(Job job) {
-
+    jobRepository.save(job);
   }
 
   @Override
   public Job getJobByid(Long id) {
-    return null;
+    return jobRepository.findById(id) .orElse(null);
   }
 
   @Override
-  public Job deleteById(Long id) {
-    return null;
+  public Boolean deleteById(Long id) {
+    try{
+      jobRepository.deleteById(id);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   @Override
   public Boolean updateJobById(Long id, Job updatedJob) {
-    return null;
+    Optional<Job> jobOptional = jobRepository.findById(id);
+    if(jobOptional.isPresent()) {
+      Job job = jobOptional.get();
+      updatedJob.setId(job.getId());
+      jobRepository.save(updatedJob);
+      return true;
+    }
+    return false;
   }
 }

@@ -1,11 +1,21 @@
 package com.apiJobs.jobApp.job;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+
 @Data
+@NoArgsConstructor
+@Entity(name = "job")
 public class Job {
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   public Long id;
   public String title;
   public String description;

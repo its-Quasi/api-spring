@@ -34,14 +34,14 @@ public class JobServiceNonDB implements JobService {
   }
 
   @Override
-  public Job deleteById(Long id) {
+  public Boolean deleteById(Long id) {
     for(Job job : jobs) {
       if(Objects.equals(job.getId(), id)) {
         jobs.remove(job);
-        return job;
+        return true;
       }
     }
-    return null;
+    return false;
   }
 
   @Override
