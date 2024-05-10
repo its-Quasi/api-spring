@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity(name = "job")
 public class Job {
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public Long id;
   public String title;
   public String description;

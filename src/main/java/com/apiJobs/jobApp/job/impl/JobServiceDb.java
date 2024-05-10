@@ -5,12 +5,15 @@ import com.apiJobs.jobApp.job.JobRepository;
 import com.apiJobs.jobApp.job.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Primary
 public class JobServiceDb implements JobService {
 
   @Autowired
@@ -27,7 +30,7 @@ public class JobServiceDb implements JobService {
   }
 
   @Override
-  public Job getJobByid(Long id) {
+  public Job getJobById(Long id) {
     return jobRepository.findById(id) .orElse(null);
   }
 

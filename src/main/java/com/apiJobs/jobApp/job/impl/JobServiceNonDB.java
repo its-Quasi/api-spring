@@ -26,7 +26,7 @@ public class JobServiceNonDB implements JobService {
   }
 
   @Override
-  public Job getJobByid(Long id) {
+  public Job getJobById(Long id) {
     for(Job job : jobs) {
       if(Objects.equals(job.getId(), id)) return job;
     }

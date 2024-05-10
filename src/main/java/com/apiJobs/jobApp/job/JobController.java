@@ -4,9 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("jobs")
@@ -31,7 +29,7 @@ public class JobController {
 
   @GetMapping("/{id}")
   public ResponseEntity<Job> getJobById(@PathVariable Long id) {
-    Job job = this.jobService.getJobByid(id);
+    Job job = this.jobService.getJobById(id);
     if(job != null) {
       return new ResponseEntity<Job>(job, HttpStatus.OK);
     }
@@ -39,10 +37,10 @@ public class JobController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Job> deleteJobById(@PathVariable Long id) {
-    Job job = this.jobService.deleteById(id);
-    if(job != null) {
-      return new ResponseEntity<>(job, HttpStatus.OK);
+  public ResponseEntity<String> deleteJobById(@PathVariable Long id) {
+    boolean canDelete = this.jobService.deleteById(id);
+    if(canDelete) {
+      return new ResponseEntity<>("Job Deleted Successfully", HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
