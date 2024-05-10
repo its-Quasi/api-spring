@@ -16,12 +16,12 @@ import java.util.Objects;
 public class Job {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long id;
-  public String title;
-  public String description;
-  public String minSalary;
-  public String maxSalary;
-  public String location;
+  private Long id;
+  private String title;
+  private String description;
+  private String minSalary;
+  private String maxSalary;
+  private String location;
 
   public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
     this.id = id;

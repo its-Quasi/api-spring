@@ -3,9 +3,7 @@ package com.apiJobs.jobApp.job.impl;
 import com.apiJobs.jobApp.job.Job;
 import com.apiJobs.jobApp.job.JobRepository;
 import com.apiJobs.jobApp.job.JobService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +29,7 @@ public class JobServiceDb implements JobService {
 
   @Override
   public Job getJobById(Long id) {
-    return jobRepository.findById(id) .orElse(null);
+    return jobRepository.findById(id).orElse(null);
   }
 
   @Override
