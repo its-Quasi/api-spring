@@ -1,11 +1,11 @@
 package com.apiJobs.jobApp.job;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.apiJobs.jobApp.company.Company;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.boot.model.internal.BinderHelper;
 
 import java.util.Objects;
 
@@ -22,6 +22,10 @@ public class Job {
   private String minSalary;
   private String maxSalary;
   private String location;
+
+  @ManyToOne
+  @JsonBackReference
+  private Company company;
 
   public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
     this.id = id;

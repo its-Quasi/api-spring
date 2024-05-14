@@ -1,6 +1,8 @@
 package com.apiJobs.jobApp.company;
 
 import com.apiJobs.jobApp.job.Job;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,8 +20,11 @@ public class Company {
   private Long id;
   private String name;
   private String description;
+
   // Jobs of a company
-  @OneToMany private List<Job> jobVacancies;
+  @JsonManagedReference
+  @OneToMany(mappedBy = "company")
+  private List<Job> jobVacancies;
 
 
   @Override
