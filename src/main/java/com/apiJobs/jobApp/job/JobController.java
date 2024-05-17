@@ -1,10 +1,13 @@
 package com.apiJobs.jobApp.job;
 
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("jobs")
@@ -23,8 +26,14 @@ public class JobController {
 
   @PostMapping()
   public ResponseEntity<String> createJob(@RequestBody Job job) {
-    this.jobService.createJob(job);
-    return new ResponseEntity<>("Job created successfully", HttpStatus.CREATED);
+    try{
+      this.jobService.createJob(job);
+      return new ResponseEntity<>("Job created successfully", HttpStatus.CREATED);
+    } catch(DataIntegrityViolationException e) {
+      return new ResponseEntity<>("Don't found company with ID: " + job.getCompany().getId(), HttpStatus.NOT_FOUND);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+    }
   }
 
   @GetMapping("/{id}")

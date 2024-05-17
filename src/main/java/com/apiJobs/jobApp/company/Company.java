@@ -2,7 +2,6 @@ package com.apiJobs.jobApp.company;
 
 import com.apiJobs.jobApp.job.Job;
 import com.apiJobs.jobApp.review.Review;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
