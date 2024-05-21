@@ -38,4 +38,9 @@ public class Company {
     if (!(o instanceof Company company)) return false;
     return Objects.equals(id, company.id);
   }
+
+  @Override
+  public String toString() {
+    return this.name + " - " + this.id;
+  }
 }

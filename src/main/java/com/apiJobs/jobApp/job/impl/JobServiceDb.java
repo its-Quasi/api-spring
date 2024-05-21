@@ -48,6 +48,7 @@ public class JobServiceDb implements JobService {
     if(jobOptional.isPresent()) {
       Job job = jobOptional.get();
       updatedJob.setId(id);
+      updatedJob.setCompany(job.getCompany());
       jobRepository.save(updatedJob);
       return true;
     }
