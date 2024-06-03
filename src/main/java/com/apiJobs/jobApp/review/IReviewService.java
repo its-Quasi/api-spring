@@ -7,5 +7,5 @@ public interface IReviewService {
   Review getReviewById(Long companyId, Long reviewId);
   void createReview(Review review);
   Boolean updateReview(Long companyId, Review review);
-  Boolean deleteReview(Long id);
+  Boolean deleteReviewById(Long id);
 }
