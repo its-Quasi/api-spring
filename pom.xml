@@ -50,6 +50,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>
+							job-app
+						</name>
+					</image>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
