@@ -6,6 +6,16 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_DB=parking
+      - POSTGRES_DB=jobapp
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
+
+  pg-admin:
+    depends_on:
+      - db
+    image: dpage/pgadmin4
+    ports:
+      - '8081:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
